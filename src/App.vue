@@ -1,4 +1,6 @@
 <template>
+  Hello vue <br />
+  <AppButton data-vue="Jorge" @update="getUpdate" variant="danger">Save</AppButton>
   <AppHook v-if="showAppHook"/>
   <button @click="showAppHook = !showAppHook">Toggle</button>
   <br />
@@ -10,10 +12,15 @@
 
 <script>
 import { ref, computed, watch } from 'vue';
+import AppButton from './components/AppButton.vue';
 import AppHook from './components/AppHook.vue';
 
 export default {
     setup() {
+        const getUpdate = (data) => {
+          console.log('getUpdate', data);
+        }
+
         const user = ref({
             first_name: "Jorge",
             last_name: "Almeida"
@@ -28,10 +35,11 @@ export default {
         return {
             user,
             fullName,
-            showAppHook
+            showAppHook,
+            getUpdate
         };
     },
-    components: { AppHook }
+    components: { AppHook, AppButton }
 }
 </script>
 
